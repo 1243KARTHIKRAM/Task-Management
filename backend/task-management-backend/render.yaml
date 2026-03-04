@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: task-management-backend
+    env: java
+    region: oregon
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/task-management-backend-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DATABASE_URL
+        description: MySQL database connection string (e.g., mysql://user:password@host:3306/dbname)
+        sync: false
+      - key: DATABASE_USERNAME
+        description: MySQL database username
+        sync: false
+      - key: DATABASE_PASSWORD
+        description: MySQL database password
+        sync: false
+      - key: JWT_SECRET
+        description: Secret key for JWT token generation (minimum 256 bits)
+        sync: false
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: CORS_ALLOWED_ORIGINS
+        description: Comma-separated list of allowed origins for CORS (e.g., https://your-frontend.onrender.com)
+        sync: false
